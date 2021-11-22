@@ -1,7 +1,9 @@
-const User = require("../../models/User");
-const { SECRET_KEY } = require("../../config.js");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { UserInputError } = require('apollo-server');
+
+const User = require('../../models/User');
+const { SECRET_KEY } = require('../../config.js');
 
 module.exports = {
     Mutation: {
@@ -10,8 +12,16 @@ module.exports = {
             context,
             info
         ) {
+            const user = await User.findOne({ username });
+            if (user) {
+                throw new UserInputError('Username is taken', {
+                    errors: {
+                        username: 'This username is taken',
+                    },
+                });
+            }
             password = await bcrypt.hash(password, 12);
-            const newUser = newUser({
+            const newUser = User({
                 email,
                 username,
                 password,
@@ -23,7 +33,7 @@ module.exports = {
                     email: res.email,
                     username: res.username,
                 },
-                SECRET_KEY, { expiresIn: "1h" }
+                SECRET_KEY, { expiresIn: '1h' }
             );
             return {
                 ...res._doc,
