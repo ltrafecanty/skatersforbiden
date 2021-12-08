@@ -1,37 +1,37 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
+import { AuthContext } from '../context/auth';
+import { useForm } from '../util/hooks';
+
 function Register(props) {
+   const context = useContext(AuthContext);
    const [errors, setErrors] = useState({});
-   const [values, setValues] = useState({
+
+   const { onChange, onSubmit, values } = useForm(registerUser, {
       username: '',
       email: '',
       password: '',
       confirmPassword: '',
    });
-   const onChange = (event) => {
-      setValues({ ...values, [event.target.name]: event.target.value });
-   };
-   const onSubmit = (event) => {
-      event.preventDefault();
-      if (Object.keys(errors).length === 0) {
-         addUser();
-      }
-   };
 
    const [addUser, { loading }] = useMutation(REGISTER_USER, {
-      update(_, result) {
-         console.log(result);
-         this.props.history.push('/');
+      update(_, { data: { register: userData } }) {
+         context.login(userData);
+         props.history.push('/');
       },
       onError(err) {
-         console.log(err.graphQLErrors[0].extensions.exception.errors);
-         setErrors(err.graphQLErrors[0].extensions.exception.errors);
+         setErrors(err.graphQLErrors[0].extensions.errors);
       },
       variables: values,
    });
+
+   function registerUser() {
+      addUser();
+   }
+
    return (
       <div className='form-container'>
          <Form
@@ -39,39 +39,41 @@ function Register(props) {
             noValidate
             className={loading ? 'loading' : ''}
          >
-            <h1> Register </h1>
+            <h1>Register</h1>
             <Form.Input
                label='Username'
-               placeholder='username'
+               placeholder='Username..'
                name='username'
+               type='text'
                value={values.username}
-               errors={errors.username ? true : false}
+               error={errors.username ? true : false}
                onChange={onChange}
             />
             <Form.Input
                label='Email'
-               placeholder='email'
+               placeholder='Email..'
                name='email'
+               type='email'
                value={values.email}
-               errors={errors.email ? true : false}
+               error={errors.email ? true : false}
                onChange={onChange}
             />
             <Form.Input
                label='Password'
-               placeholder='password'
+               placeholder='Password..'
                name='password'
                type='password'
                value={values.password}
-               errors={errors.password ? true : false}
+               error={errors.password ? true : false}
                onChange={onChange}
             />
             <Form.Input
                label='Confirm Password'
-               placeholder='confirm password'
+               placeholder='Confirm Password..'
                name='confirmPassword'
                type='password'
                value={values.confirmPassword}
-               errors={errors.confirmPassword ? true : false}
+               error={errors.confirmPassword ? true : false}
                onChange={onChange}
             />
             <Button type='submit' primary>
@@ -80,7 +82,7 @@ function Register(props) {
          </Form>
          {Object.keys(errors).length > 0 && (
             <div className='ui error message'>
-               <ul classname='list'>
+               <ul className='list'>
                   {Object.values(errors).map((value) => (
                      <li key={value}>{value}</li>
                   ))}
@@ -90,6 +92,7 @@ function Register(props) {
       </div>
    );
 }
+
 const REGISTER_USER = gql`
    mutation register(
       $username: String!
@@ -113,4 +116,5 @@ const REGISTER_USER = gql`
       }
    }
 `;
+
 export default Register;
