@@ -21,8 +21,8 @@ function App() {
             <Container>
                <MenuBar />
                <Routes>
-                  <Route path='/' element={<Home />} />
-                  <Route path='/login' element={<Login />} />
+                  <AuthRoute path='/' element={<Home />} />
+                  <AuthRoute path='/login' element={<Login />} />
                   <Route path='/register' element={<Register />} />
                </Routes>
             </Container>
