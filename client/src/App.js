@@ -23,7 +23,7 @@ function App() {
                <Routes>
                   <Route path='/' component={<Home />} />
                   <AuthRoute path='/login' component={<Login />} />
-                  <Route path='/register' component={<Register />} />
+                  <AuthRoute path='/register' component={<Register />} />
                </Routes>
             </Container>
          </Router>
