@@ -21,12 +21,13 @@ function App() {
             <Container>
                <MenuBar />
                <Routes>
-                  <Route path='/' component={<Home />} />
-                  <AuthRoute path='/login' component={<Login />} />
-                  <AuthRoute path='/register' component={<Register />} />
-               </Routes>
-            </Container>
-         </Router>
+                  <Route path='/' element={<Home />} />{' '}
+                  <Route path='/' elememnt={<AuthRoute />}>
+                     <Route path='/login' element={<Login />} />{' '}
+                  </Route>
+               </Routes>{' '}
+            </Container>{' '}
+         </Router>{' '}
       </AuthProvider>
    );
 }
