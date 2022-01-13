@@ -29,7 +29,15 @@ function App() {
                            <Login />
                         </AuthRoute>
                      }
-                  ></Route>
+                  />
+                  <Route
+                     path='/register'
+                     element={
+                        <AuthRoute redirectTo='/'>
+                           <Register />
+                        </AuthRoute>
+                     }
+                  />
                </Routes>{' '}
             </Container>{' '}
          </Router>{' '}
