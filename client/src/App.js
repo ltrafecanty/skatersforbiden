@@ -22,9 +22,14 @@ function App() {
                <MenuBar />
                <Routes>
                   <Route path='/' element={<Home />} />{' '}
-                  <Route path='/login' element={<Login />}>
-                     <Route path='/login' element={<AuthRoute />} />
-                  </Route>
+                  <Route
+                     path='/login'
+                     element={
+                        <AuthRoute redirectTo='/'>
+                           <Login />
+                        </AuthRoute>
+                     }
+                  ></Route>
                </Routes>{' '}
             </Container>{' '}
          </Router>{' '}

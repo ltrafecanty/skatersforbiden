@@ -3,18 +3,9 @@ import { Route, Navigate } from 'react-router-dom';
 
 import { AuthContext } from '../context/auth';
 
-function AuthRoute({ element: Component, ...rest }) {
-    const { user } = useContext(AuthContext);
-    console.log(user);
-    return ( <
-        Route {...rest }
-        render = {
-            (props) =>
-            user ? < Navigate to = '/' / > : < Component {...props }
-            />
-        }
-        />
-    );
+function AuthRoute({ children, redirectTo }) {
+   const { user } = useContext(AuthContext);
+   return user ? <Navigate to={redirectTo} /> : children;
 }
 
 export default AuthRoute;
