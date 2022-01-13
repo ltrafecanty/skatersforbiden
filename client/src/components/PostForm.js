@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 
@@ -31,6 +31,9 @@ function PostForm() {
                onChange={onChange}
                value={values.body}
             />
+            <Button type='submit' color='teal' primary>
+               Submit
+            </Button>{' '}
          </Form.Field>
       </Form>
    );
