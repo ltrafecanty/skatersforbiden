@@ -30,7 +30,7 @@ module.exports = {
         async createPost(_, { body }, context) {
             const user = checkAuth(context);
             if (body.trim() === '') {
-                throw new UserInputError('Post body must not be empty')
+                throw new UserInputError('Post body must not be empty');
             }
             const newPost = new Post({
                 body,
@@ -45,8 +45,6 @@ module.exports = {
             const user = checkAuth(context);
             try {
                 const post = await Post.findById(postID);
-                console.log(post);
-                console.log(user);
                 if (post.username === user.username) {
                     await post.delete();
                     return 'Post deleted successfully';
@@ -61,8 +59,10 @@ module.exports = {
             const { username } = checkAuth(context);
             const post = await Post.findById(postID);
             if (post) {
-                if (post.likes.find(like => like.username === username)) {
-                    post.likes = post.likes.filter((like) => like.username !== username);
+                if (post.likes.find((like) => like.username === username)) {
+                    post.likes = post.likes.filter(
+                        (like) => like.username !== username
+                    );
                 } else {
                     post.likes.push({
                         username,
