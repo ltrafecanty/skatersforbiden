@@ -12,9 +12,10 @@ function Home() {
    const { loading, data, error } = useQuery(FETCH_POSTS_QUERY);
    if (error) {
       console.log(error);
+      console.log('ERROR IN HOME');
    }
-   const posts = data && data.getPosts ? data.getPosts : [];
 
+   const posts = data && data.getPosts ? data.getPosts : [];
    return (
       <Grid columns={2}>
          <Grid.Row className='page-title'>
