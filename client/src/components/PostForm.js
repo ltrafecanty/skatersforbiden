@@ -13,12 +13,13 @@ function PostForm() {
 
    const [createPost, { error }] = useMutation(CREATE_POST_MUTATION, {
       variables: values,
-      update(proxy, result) {
-         const data = proxy.readQuery({
+      update(cache, result) {
+         const data = cache.readQuery({
             query: FETCH_POSTS_QUERY,
          });
          data.getPosts = [result.data.createPost, ...data.getPosts];
-         proxy.writeQuery({ query: FETCH_POSTS_QUERY, data });
+         console.log(data.getPosts);
+         cache.writeQuery({ query: FETCH_POSTS_QUERY, data });
          values.body = '';
       },
    });
