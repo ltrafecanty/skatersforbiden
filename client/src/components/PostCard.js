@@ -10,13 +10,10 @@ function PostCard({
    post: { body, createdAt, id, username, likeCount, commentCount, likes },
 }) {
    const { user } = useContext(AuthContext);
-   // function likePost() {
-   //    console.log('Like post');
-   // }
 
-   // function commentOnPost() {
-   //    console.log('Like post');
-   // }
+   function commentOnPost() {
+      console.log('Like post');
+   }
    return (
       <Card fluid>
          <Card.Content>
@@ -46,7 +43,7 @@ function PostCard({
             {user && user.username === username && (
                <Button
                   as='div'
-                  color='facebook'
+                  color='linkedin'
                   size='small'
                   floated='right'
                   onClick={() => console.log('Delete post')}

@@ -64,9 +64,9 @@ module.exports = {
                 throw new Error(err);
             }
         },
-        async likePost(_, { postId }, context) {
+        async likePost(_, { postID }, context) {
             const { username } = checkAuth(context);
-            const post = await Post.findById(postId);
+            const post = await Post.findById(postID);
             if (post) {
                 if (post.likes.find((like) => like.username === username)) {
                     // Post already likes, unlike it
@@ -80,7 +80,7 @@ module.exports = {
                         createdAt: new Date().toISOString(),
                     });
                 }
-
+                console.log(post);
                 await post.save();
                 return post;
             } else throw new UserInputError('Post not found');
