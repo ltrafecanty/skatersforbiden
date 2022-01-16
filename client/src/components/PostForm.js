@@ -23,6 +23,9 @@ function PostForm() {
          });
          values.body = '';
       },
+      onError: (err) => {
+         console.log(err);
+      },
    });
 
    function createPostCallback() {

@@ -11,7 +11,6 @@ function Home() {
    const { user } = useContext(AuthContext);
    const { loading, error, data } = useQuery(FETCH_POSTS_QUERY);
    if (error) return `Error! ${error.message}`;
-   console.log('HOME PAGE QUERY');
 
    return (
       <Grid columns={3}>
