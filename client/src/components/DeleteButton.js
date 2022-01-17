@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
 import { Button, Confirm, Icon } from 'semantic-ui-react';
 import { DELETE_POST_MUTATION } from '../util/graphql';
@@ -29,12 +28,12 @@ function DeleteButton({ postID }) {
             onClick={() => setConfirmOpen(true)}
          >
             <Icon name='trash' style={{ margin: 0 }} />{' '}
-         </Button>
+         </Button>{' '}
          <Confirm
             open={confirmOpen}
             onCancel={() => setConfirmOpen(false)}
             onConfirm={deletePost}
-         />
+         />{' '}
       </>
    );
 }

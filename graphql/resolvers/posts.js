@@ -13,9 +13,9 @@ module.exports = {
                 throw new Error(err);
             }
         },
-        async getPost(_, { postId }) {
+        async getPost(_, { postID }) {
             try {
-                const post = await Post.findById(postId);
+                const post = await Post.findById(postID);
                 if (post) {
                     return post;
                 } else {

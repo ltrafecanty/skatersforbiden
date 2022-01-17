@@ -23,7 +23,7 @@ function App() {
                <MenuBar />
                <Routes>
                   <Route path='/' element={<Home />} />{' '}
-                  {/* <Route path='/posts/:postID' element={SinglePost} />{' '} */}
+                  <Route path='/posts/:postID' element={<SinglePost />} />{' '}
                   <Route
                      path='/login'
                      element={
