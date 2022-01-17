@@ -49,11 +49,12 @@ module.exports = {
 
             return post;
         },
-        async deletePost(_, { postId }, context) {
+        async deletePost(_, { postID }, context) {
             const user = checkAuth(context);
+            console.log(postID);
 
             try {
-                const post = await Post.findById(postId);
+                const post = await Post.findById(postID);
                 if (user.username === post.username) {
                     await post.delete();
                     return 'Post deleted successfully';
@@ -80,7 +81,6 @@ module.exports = {
                         createdAt: new Date().toISOString(),
                     });
                 }
-                console.log(post);
                 await post.save();
                 return post;
             } else throw new UserInputError('Post not found');

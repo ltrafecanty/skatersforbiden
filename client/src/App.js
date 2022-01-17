@@ -13,6 +13,7 @@ import MenuBar from './components/MenuBar';
 import Home from './pages/Home.js';
 import Login from './pages/Login.js';
 import Register from './pages/Register.js';
+import SinglePost from './pages/SinglePost.js';
 
 function App() {
    return (
@@ -22,6 +23,7 @@ function App() {
                <MenuBar />
                <Routes>
                   <Route path='/' element={<Home />} />{' '}
+                  {/* <Route path='/posts/:postID' element={SinglePost} />{' '} */}
                   <Route
                      path='/login'
                      element={
@@ -29,7 +31,7 @@ function App() {
                            <Login />
                         </AuthRoute>
                      }
-                  />
+                  />{' '}
                   <Route
                      path='/register'
                      element={
@@ -37,7 +39,7 @@ function App() {
                            <Register />
                         </AuthRoute>
                      }
-                  />
+                  />{' '}
                </Routes>{' '}
             </Container>{' '}
          </Router>{' '}

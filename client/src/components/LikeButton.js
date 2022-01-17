@@ -18,7 +18,6 @@ function LikeButton({ user, post: { id, likeCount, likes } }) {
       variables: { postID: id },
       onError: (err) => {
          console.log(err);
-         console.log(user);
       },
    });
 
@@ -33,7 +32,7 @@ function LikeButton({ user, post: { id, likeCount, likes } }) {
          </Button>
       )
    ) : (
-      <Button as={Link} to='/login' color='teal' basic>
+      <Button as={Link} to='/Login' color='teal' basic>
          <Icon name='heart' />
       </Button>
    );
@@ -45,11 +44,12 @@ function LikeButton({ user, post: { id, likeCount, likes } }) {
             labelPosition='right'
             onClick={user ? likePost : undefined}
          >
-            {likeButton}
+            {likeButton}{' '}
             <Label basic color='teal' pointing='left'>
-               {likeCount}
-            </Label>
-         </Button>
+               {' '}
+               {likeCount}{' '}
+            </Label>{' '}
+         </Button>{' '}
       </>
    );
 }
