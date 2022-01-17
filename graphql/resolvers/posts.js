@@ -51,7 +51,6 @@ module.exports = {
         },
         async deletePost(_, { postID }, context) {
             const user = checkAuth(context);
-            console.log(postID);
 
             try {
                 const post = await Post.findById(postID);
