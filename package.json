@@ -17,9 +17,7 @@
         "fomantic-ui-css": "^2.8.8",
         "graphql-subscriptions": "^2.0.0",
         "jsonwebtoken": "^8.5.1",
-        "mongoose": "^6.0.14",
-        "react-router-dom": "^6.0.2",
-        "semantic-ui-react": "^2.0.4"
+        "mongoose": "^6.0.14"
     },
     "devDependencies": {
         "graphql": "^14.7.0",
