@@ -1,3 +1,2 @@
-# merng: social platform clone
-
-# simply practicing and trying to broaden my horizons
+# social platform using the MERNG stack 
+ simply practicing and trying to broaden my horizons
